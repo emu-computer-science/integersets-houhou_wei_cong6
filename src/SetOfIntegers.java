@@ -6,7 +6,8 @@ class SetOfIntegers {
 		System.out.println("we are testing reverse");
 		return 0;
 	}
-	public int sort(boolean reverse = true) {
+	public int sort(boolean reverse = false) {
 		System.out.println("Sorting SetOfIntegers")
+		
 	}
 }

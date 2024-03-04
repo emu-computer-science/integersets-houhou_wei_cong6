@@ -1,67 +1,59 @@
-class UserInteraction {
-    private Scanner scanner;
-    private CollectionSet collection;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
-    public UserInteraction() {
-        scanner = new Scanner(System.in);
-        collection = new CollectionSet();
+class UserInteraction {
+    private CollectSetsOfIntegers sets;
+
+    public UserInteraction(CollectSetsOfIntegers sets) {
+        this.sets = sets;
     }
 
-    public void start() {
-        String command = "";
-        while (!command.equals("quit")) {
-            System.out.print("The commands are show, new, select, delete, sort, reverse, randomize, save, restore, quit.  Please enter a command: ");
-            command = scanner.nextLine();
-            switch (command) {
-                case "show":
-                    collection.showSets();
-                    break;
+    public void interact() {
+        Scanner scanner = new Scanner(System.in);
+        String input;
+        do {
+            System.out.println("\nOptions:");
+            System.out.println("1. New");
+            System.out.println("2. Show");
+            System.out.println("3. Delete");
+            System.out.println("4. Select");
+            System.out.println("Enter your choice (or 'exit' to quit): ");
+            input = scanner.nextLine();
+            switch (input.toLowerCase()) {
                 case "new":
-                    System.out.print("Please enter a sequence of integers, separated by spaces, terminated by hitting <RETURN>: ");
-                    String[] elementsStr = scanner.nextLine().trim().split("\\s+");
-                    List<Integer> elements = new ArrayList<>();
-                    for (String element : elementsStr) {
-                        elements.add(Integer.parseInt(element));
+                    System.out.println("Enter a sequence of whitespace-separated integers terminated by <RETURN>: ");
+                    String integersInput = scanner.nextLine();
+                    String[] integersArray = integersInput.split("\\s+");
+                    List<Integer> integers = new ArrayList<>();
+                    for (String s : integersArray) {
+                        if (!s.isEmpty())
+                            integers.add(Integer.parseInt(s));
                     }
-                    collection.addSet(elements);
+                    sets.addSet(integers);
                     break;
-                case "select":
-                    System.out.print("Please select a set (A - Z): ");
-                    char label = scanner.nextLine().charAt(0);
-                    collection.selectSet(label);
+                case "show":
+                    sets.showSets();
                     break;
                 case "delete":
-                    collection.deleteSet();
+                    sets.deleteCurrentSet();
                     break;
-                case "sort":
-                    // Implement sort functionality
+                case "select":
+                    if (sets.hasSets()) {
+                        System.out.println("Enter the label of the set you want to select: ");
+                        char label = scanner.nextLine().toUpperCase().charAt(0);
+                        sets.selectSet(label);
+                    } else {
+                        System.out.println("There are no sets to select.");
+                    }
                     break;
-                case "reverse":
-                    // Implement reverse functionality
-                    break;
-                case "randomize":
-                    // Implement randomize functionality
-                    break;
-                case "save":
-                    // Implement save functionality
-                    break;
-                case "restore":
-                    // Implement restore functionality
-                    break;
-                case "quit":
-                    System.out.println("Quitting the program.");
+                case "exit":
+                    System.out.println("Exiting...");
                     break;
                 default:
-                    System.out.println("Unrecognized command. Please enter a valid command.");
-                    break;
+                    System.out.println("Invalid option.");
             }
-        }
-    }
-}
-
-public class RunIntegerSets {
-    public static void main(String[] args) {
-        UserInteraction ui = new UserInteraction();
-        ui.start();
+        } while (!input.equalsIgnoreCase("exit"));
+        scanner.close();
     }
 }

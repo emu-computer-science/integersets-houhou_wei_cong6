@@ -1,10 +1,12 @@
-class UserInteraction {
+import java.util.*;
+
+public class UserInteraction {
     private Scanner scanner;
-    private CollectionSet collection;
+    private CollectionSetsOfIntegers collection;
 
     public UserInteraction() {
         scanner = new Scanner(System.in);
-        collection = new CollectionSet();
+        collection = new CollectionSetsOfIntegers();
     }
 
     public void start() {
@@ -14,7 +16,7 @@ class UserInteraction {
             command = scanner.nextLine();
             switch (command) {
                 case "show":
-                    collection.showSets();
+                    collection.show(false);
                     break;
                 case "new":
                     System.out.print("Please enter a sequence of integers, separated by spaces, terminated by hitting <RETURN>: ");
@@ -28,25 +30,25 @@ class UserInteraction {
                 case "select":
                     System.out.print("Please select a set (A - Z): ");
                     char label = scanner.nextLine().charAt(0);
-                    collection.selectSet(label);
+                    // Add implementation to select set
                     break;
                 case "delete":
-                    collection.deleteSet();
+                    // Add implementation to delete set
                     break;
                 case "sort":
-                    // Implement sort functionality
+                    // Add implementation to sort set
                     break;
                 case "reverse":
-                    // Implement reverse functionality
+                    // Add implementation to reverse set
                     break;
                 case "randomize":
-                    // Implement randomize functionality
+                    // Add implementation to randomize set
                     break;
                 case "save":
-                    // Implement save functionality
+                    // Add implementation to save set
                     break;
                 case "restore":
-                    // Implement restore functionality
+                    // Add implementation to restore set
                     break;
                 case "quit":
                     System.out.println("Quitting the program.");
@@ -56,12 +58,8 @@ class UserInteraction {
                     break;
             }
         }
+     
     }
 }
 
-public class RunIntegerSets {
-    public static void main(String[] args) {
-        UserInteraction ui = new UserInteraction();
-        ui.start();
-    }
-}
+

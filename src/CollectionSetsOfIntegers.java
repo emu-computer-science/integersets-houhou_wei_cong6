@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import java.util.List;
-=======
 import java.util.*;
 class CollectSetsOfIntegers {
     private List<SetOfIntegers> sets;
@@ -10,21 +7,7 @@ class CollectSetsOfIntegers {
     public CollectSetsOfIntegers() {
         this.sets = new ArrayList<>();
     }
->>>>>>> branch 'main' of https://github.com/emu-computer-science/integersets-houhou_wei_cong6.git
 
-<<<<<<< HEAD
-class CollectionSetsOfIntegers {
-	public int show(boolean inOrder) {
-		System.out.println("we are testing show.");
-		return 0;
-	}
-
-	public void addSet(List<Integer> elements) {
-		// TODO Auto-generated method stub
-		
-	}
-	}
-=======
     public void addSet(List<Integer> integers) {
         sets.add(new SetOfIntegers(nextLabel, "random", integers));
         System.out.println("A new set, " + nextLabel + ", has been added: [random] " + integers + ".");
@@ -74,4 +57,3 @@ class CollectionSetsOfIntegers {
         System.out.println("Cannot delete because the selected set does not exist.");
     }
 }
->>>>>>> branch 'main' of https://github.com/emu-computer-science/integersets-houhou_wei_cong6.git

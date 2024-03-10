@@ -1,5 +1,3 @@
-
-
 public class RunIntegerSets {
     public static void main(String[] args) {
         CollectSetsOfIntegers sets = new CollectSetsOfIntegers();

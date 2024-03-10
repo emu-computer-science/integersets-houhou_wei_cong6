@@ -49,11 +49,99 @@ class CollectSetsOfIntegers {
         for (int i = 0; i < sets.size(); i++) {
             if (sets.get(i).getLabel() == currentLabel) {
                 sets.remove(i);
-                currentLabel = '\0'; // Reset currentLabel after deletion
+                currentLabel = '\0'; 
                 System.out.println("Set " + currentLabel + " has been deleted.");
                 return;
             }
         }
         System.out.println("Cannot delete because the selected set does not exist.");
+    }
+
+    public int sortCurrentSet() {
+        if (currentLabel == '\0') {
+            System.out.println("There is no currently selected set to sort.");
+            return 0;
+        }
+
+        for (SetOfIntegers set : sets) {
+            if (set.getLabel() == currentLabel) {
+                List<Integer> integers = set.getIntegers();
+                int n = integers.size();
+                int swaps = 0;
+                for (int i = 1; i < n; ++i) {
+                    int key = integers.get(i);
+                    int j = i - 1;
+
+                    while (j >= 0 && integers.get(j) > key) {
+                        integers.set(j + 1, integers.get(j));
+                        j = j - 1;
+                        swaps++;
+                    }
+                    integers.set(j + 1, key);
+                }
+                set.setState("increasing");
+                return swaps;
+            }
+        }
+        return 0; 
+    }
+
+    public void randomizeCurrentSet() {
+        if (currentLabel == '\0') {
+            System.out.println("There is no currently selected set to randomize.");
+            return;
+        }
+
+        for (SetOfIntegers set : sets) {
+            if (set.getLabel() == currentLabel) {
+                List<Integer> integers = set.getIntegers();
+                Random rand = new Random();
+                int n = integers.size();
+                for (int i = 0; i < n; i++) {
+                    int randomIndexToSwap = rand.nextInt(n);
+                    int temp = integers.get(randomIndexToSwap);
+                    integers.set(randomIndexToSwap, integers.get(i));
+                    integers.set(i, temp);
+                }
+                set.setState("random");
+                return;
+            }
+        }
+    }
+
+    public void reverseCurrentSet() {
+        if (currentLabel == '\0') {
+            System.out.println("There is no currently selected set to reverse.");
+            return;
+        }
+
+        for (SetOfIntegers set : sets) {
+            if (set.getLabel() == currentLabel) {
+                List<Integer> integers = set.getIntegers();
+                Collections.reverse(integers);
+                if (set.getState().equals("random")) {
+                    set.setState("random");
+                } else if (set.getState().equals("increasing")) {
+                    set.setState("decreasing");
+                } else if (set.getState().equals("decreasing")) {
+                    set.setState("increasing");
+                }
+                System.out.println("Reversed set: " + set);
+                return;
+            }
+        }
+    }
+
+    public char getCurrentLabel() {
+        return currentLabel;
+    }
+
+    public SetOfIntegers getCurrentSet() {
+        for (SetOfIntegers set : sets) {
+            if (set.getLabel() == currentLabel) {
+                return set;
+            }
+        }
+        return null;
     }
 }

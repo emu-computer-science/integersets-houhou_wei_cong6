@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 
 class SetOfIntegers {
     private char label;
@@ -39,4 +39,27 @@ class SetOfIntegers {
     public String toString() {
         return label + ". [" + state + "] " + integers;
     }
+    
+	//default function call is false without parameters
+	public ArrayList<Integer> sort() {
+		return sort(false);
+	}
+	
+	public int length() {
+		return setOfIntegers.size();
+	}
+    
+	//default comparison function
+	//returns the difference in size between the two sets -- set1 - set2
+	//negative when s1 < s2, positive when s1>s2, 0 when s1=s2
+	public int compareTo(SetOfIntegers o) {
+	int s = 0;
+	for(int i = 0; i < this.length(); i++) {
+		s += this.setOfIntegers.get(i);
+	}
+	for(int i = 0; i < o.length(); i++) {
+		s -= o.setOfIntegers.get(i);
+	}
+	return s;
+	}
 }

@@ -9,6 +9,8 @@ class SetOfIntegers {
 	}
 	
 	//full sort function
+	//using collections.sort mostly because while I could code a different sort I'm pretty sure the implementation
+	//on default Collections.sort is o(nlogn) so there's no point in it
 	public ArrayList<Integer> sort(boolean reverse) {
 		System.out.println("Sorting SetOfIntegers");
 		if(reverse) {
@@ -20,6 +22,7 @@ class SetOfIntegers {
 	}
 	
 	//default function call is false without parameters
+	//overloaded default call for standard forward sort
     public ArrayList<Integer> sort() {
         return sort(false);
     }

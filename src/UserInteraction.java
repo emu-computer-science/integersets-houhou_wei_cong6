@@ -1,6 +1,4 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class UserInteraction {
     private CollectSetsOfIntegers sets;
@@ -55,7 +53,7 @@ class UserInteraction {
         System.out.println("Enter a sequence of whitespace-separated integers terminated by <RETURN>: ");
         String integersInput = scanner.nextLine();
         String[] integersArray = integersInput.split("\\s+");
-        List<Integer> integers = new ArrayList<>();
+        ArrayList<Integer> integers = new ArrayList<>();
         for (String s : integersArray) {
             if (!s.isEmpty())
                 integers.add(Integer.parseInt(s));

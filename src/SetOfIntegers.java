@@ -3,9 +3,9 @@ import java.util.*;
 class SetOfIntegers {
     private char label;
     private String state;
-    private List<Integer> integers;
+    private ArrayList<Integer> integers = new ArrayList<Integer>();
 
-    public SetOfIntegers(char label, String state, List<Integer> integers) {
+    public SetOfIntegers(char label, String state, ArrayList<Integer> integers) {
         this.label = label;
         this.state = state;
         this.integers = integers;
@@ -31,7 +31,7 @@ class SetOfIntegers {
         return integers;
     }
 
-    public void setIntegers(List<Integer> integers) {
+    public void setIntegers(ArrayList<Integer> integers) {
         this.integers = integers;
     }
 
@@ -40,13 +40,24 @@ class SetOfIntegers {
         return label + ". [" + state + "] " + integers;
     }
     
+	//full sort function
+	public ArrayList<Integer> sort(boolean reverse) {
+		System.out.println("Sorting SetOfIntegers");
+		if(reverse) {
+			Collections.sort(integers);
+		}else {
+			Collections.sort(integers, Collections.reverseOrder());
+		}
+		return integers;
+	}
+    
 	//default function call is false without parameters
 	public ArrayList<Integer> sort() {
 		return sort(false);
 	}
 	
 	public int length() {
-		return setOfIntegers.size();
+		return integers.size();
 	}
     
 	//default comparison function
@@ -55,10 +66,10 @@ class SetOfIntegers {
 	public int compareTo(SetOfIntegers o) {
 	int s = 0;
 	for(int i = 0; i < this.length(); i++) {
-		s += this.setOfIntegers.get(i);
+		s += this.integers.get(i);
 	}
 	for(int i = 0; i < o.length(); i++) {
-		s -= o.setOfIntegers.get(i);
+		s -= o.integers.get(i);
 	}
 	return s;
 	}

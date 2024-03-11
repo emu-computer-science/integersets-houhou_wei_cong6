@@ -8,7 +8,7 @@ class CollectSetsOfIntegers {
         this.sets = new ArrayList<>();
     }
 
-    public void addSet(List<Integer> integers) {
+    public void addSet(ArrayList<Integer> integers) {
         sets.add(new SetOfIntegers(nextLabel, "random", integers));
         System.out.println("A new set, " + nextLabel + ", has been added: [random] " + integers + ".");
         nextLabel++;

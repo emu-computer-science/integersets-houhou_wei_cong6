@@ -1,5 +1,6 @@
+import java.io.Serializable;
 import java.util.*;
-class CollectSetsOfIntegers {
+class CollectSetsOfIntegers implements Serializable {
     private List<SetOfIntegers> sets;
     private char nextLabel = 'A';
     private char currentLabel = '\0';

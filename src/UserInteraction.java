@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 
 class UserInteraction {
@@ -42,6 +43,14 @@ class UserInteraction {
                 case "exit":
                     System.out.println("Exiting...");
                     break;
+                case "save":
+                	System.out.println("Enter the file name to be saved: ");
+                	String fileName = scanner.nextLine();
+                	saveState(fileName);
+                case "restore":
+                	System.out.println("Enter the file name to be restored: ");
+                	String loadName = scanner.nextLine();
+                	loadState(loadName);
                 default:
                     System.out.println("Invalid option.");
             }
@@ -108,6 +117,28 @@ class UserInteraction {
             System.out.println("There are no sets to reverse.");
         }
     }
+    
+    private void saveState(String fileName) {
+    	try (FileOutputStream fos = new FileOutputStream("fileName");
+    			ObjectOutputStream oos = new ObjectOutputStream(fos);){
+    		oos.writeObject(sets);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private void loadState(String fileName) {
+    	try (FileInputStream fis = new FileInputStream("fileName"); ObjectInputStream ois = new ObjectInputStream(fis)){
+    		sets = (CollectSetsOfIntegers) ois.readObject();
+    	} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
     private void printHelp() {
         System.out.println("List of commands:");
@@ -118,6 +149,8 @@ class UserInteraction {
         System.out.println("sort - Sort currently selected set");
         System.out.println("randomize - Randomize currently selected set");
         System.out.println("reverse - Reverse currently selected set");
+        System.out.println("save -- Save currently selected set to disk");
+        System.out.println("restore -- restore set from saved file");
         System.out.println("exit - Exit the program");
     }
 }
